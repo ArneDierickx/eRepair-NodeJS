@@ -1,10 +1,15 @@
 Deze versie ondersteunt inloggen enkel voor gebruikers in configs.js en in de database, dit is momenteel enkel: user "eRepair" met password "test".
 
-Deze versie heb ik nog niet op Combell gekregen en is nog niet echt secure (geen https of jwt voor authenticatie), maar gebruikt wel al de online database van Combell die ook gebruikt wordt door de PWA en Laravel.
+Er wordt gebruik gemaakt van de online Combell database voor alle data.
+
+Voor authenticatie wordt JWT (json web token) gebruikt om te controleren of een binnenkomende request van een geauthenticeerde gebruiker is.
+Hiervoor worden de files private.key en public.key gebruikt.
+Voor de "beschermde" endpoints is er middleware geschreven die de token verifieert en wanneer dit ok is de eigenlijke endpoint logica uitvoert.
+
+Er is een validator die user input verifieert. Nu is deze zeer basis, maar deze kan gemakkelijk uitgebreid worden.
 
 Enkele dingen kunnen aangepast worden in configs.js.
 
-Via de endpoint /temptest (tijdelijk als test), kan een testbericht in de database gezet worden, deze kunnen dan uitgelezen worden door de PWA via Laravel.
-Deze endpoint controleert nog niet als iemand wel degelijk ingelogd is.
+Voor password verificatie wordt Bcrypt gebruikt.
 
-Voor password storage wordt Bcrypt gebruikt.
+De API stuurt aangepaste error berichten en codes terug wanneer iets fout loopt.

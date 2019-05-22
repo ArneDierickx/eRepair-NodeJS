@@ -1,7 +1,9 @@
+// config with options used in the application
 "use strict";
 
 // this is already the remote database the PWA and laravel are using
 const mysqlConfig = {
+    connectionLimit: 100,
     host: "ID286902_erepair.db.webhosting.be",
     port: 3306,
     database: "ID286902_erepair",
